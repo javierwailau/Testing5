@@ -12,10 +12,10 @@ package gato;
 import java.io.*;
 public class JuegoGato{
   //Variables.  
-    public char [] [] tablero;
-    public char jugadorUno;
-    public char jugadorDos;
-    public boolean turno;
+    private char [] [] tablero;
+    private char jugadorUno;
+    private char jugadorDos;
+    private boolean turno;
     int contador;        
  //Constructor(Inicializa Variables).
     public JuegoGato(){
@@ -24,7 +24,7 @@ public class JuegoGato{
         jugadorUno   = 'X';
         jugadorDos   = 'O';
         turno        = true;  //Si El Valor De "turno" Es Igual A "true" El Turno Es Del Jugador 1, De Lo Contrario Es Jugador 2. 
-        int contador = 0;     //Lleva Cuenta De Las Veces Que Han Participado Los Jugadores 1 y 2. 
+        contador = 0;     //Lleva Cuenta De Las Veces Que Han Participado Los Jugadores 1 y 2. 
         inicializarTablero();  
     }
         
@@ -50,19 +50,24 @@ public class JuegoGato{
                 
                 for(int j=0;j<3;j++){
                         
-                        if(j<2)
+                        if(j<2){
+                            System.out.print(" " + tablero[i][j] + " |");
+                        }
                         
-                                System.out.print(" " + tablero[i][j] + " |");
                         
                         else
+                        {
+                            System.out.print(" " + tablero[i][j] + " ");
+                        }  
                                 
-                                System.out.print(" " + tablero[i][j] + " ");
                                                                 
                 }
                 
-                if(i<2)
+                if(i<2){
+                    System.out.println("\n");
+                }
                         
-                        System.out.println("\n-----------");                                                                    
+                                                                                       
         }
         System.out.println();
         System.out.println();
@@ -70,61 +75,82 @@ public class JuegoGato{
     }
     
   //Indica La Posicion Donde Se Ingresara El Dato Dentro Del Arreglo Por Medio De Parametros.   
-    public void indicarPosicionArreglo (int a, int b, char c) {tablero [a][b]=c;}
+    public void indicarPosicionArreglo (int a, int b, char c) {
+        tablero [a][b]=c;
+    }
   //Manipula el valor De La Variable "turno".   
-    public void setTurno               (boolean d)            {turno         =d;}
+    public void setTurno               (boolean d)            {
+        turno         =d;
+    }
   //Manipula el valor De La Variable "contador".   
-    public void setContador            (int e)                {contador      =e;} 
+    public void setContador            (int e)                {
+        contador      =e;
+    } 
     
   //Regresa Valor De La Posicion Del Arreglo Indicada Por Medio De Parametros.   
-    public char getPosicionArreglo (int a, int b)  {return tablero[a][b];} 
+    public char getPosicionArreglo (int a, int b)  {
+        return tablero[a][b];
+    } 
         
   //Regresa Valor De La Variable "jugadorUno".
-    public char getJugadorUno      ()  {return jugadorUno   ;}            
+    public char getJugadorUno      ()  {
+        return jugadorUno   ;
+    }            
    
   //Regresa Valor De La Variable "jugadorDos".
-    public char getJugadorDos      ()  {return jugadorDos   ;}            
+    public char getJugadorDos      ()  {
+        return jugadorDos   ;
+    }            
   
   //Regresa Valor De La Variable "turno". 
-    public boolean getTurno        ()  {return turno        ;}
+    public boolean getTurno        ()  {
+        return turno        ;
+    }
   //Regresa Valor De La Variable "contador".              
-    public int getContador         ()  {return contador     ;}           
+    public int getContador         ()  {
+        return contador     ;
+    }           
     
     
   //Imprime e Indica El El Turno Del Jugador Que Le Toca Elejir Una Casilla Con Ayuda del Metodo "getTurno()".
     public void indicarTurno(){
         
-        if(getTurno()==true)
-                
-                System.out.println("JUGADOR 1: Elija Una Casilla Ingresando El Numero Correspondiente.");
+        if(getTurno()==true){
+            System.out.println("JUGADOR 1: Elija Una Casilla Ingresando El Numero Correspondiente.");
+        }
                 
         else
                 
-                System.out.println("JUGADOR 2: Elija Una Casilla Ingresando El Numero Correspondiente.");       
+        {
+            System.out.println("JUGADOR 2: Elija Una Casilla Ingresando El Numero Correspondiente.");
+        }       
     }
     
   //Regresa El Caracter De Tipo Char Para Posteriormente Ingresarlo A Alguna Posicion Del Arreglo, Usandolo En Otro Metodo.
     public char obtenerFigura(){
         
-        if(getTurno()==true)
+        if(getTurno()==true){
                 
                 return jugadorUno;
-                
+        }
         else
-                
-                return jugadorDos;      
+        {
+                return jugadorDos; 
+        }
     }
     
   //Cambia El Valor De La Variable "turno" Para Llevar El Orden Correcto De Los Turnos Entre Los 2 Jugadores.    
     public void cambiarTurno(){         
         
-        if(obtenerFigura()=='X') //Si el Metodo regresa un valor char igual a "X" cambia el valor de "turno" a "false".
+        if(obtenerFigura()=='X'){ //Si el Metodo regresa un valor char igual a "X" cambia el valor de "turno" a "false".
                 
                 setTurno(false);
+        }
         
         else
-                
-                setTurno(true); 
+        {
+                setTurno(true);
+        }
     }
       
   //Verifica Si La Posicion Del Arreglo Al Que El Jugador Desea Ingresar El Caracter No Fue Utilizada Antes.  
@@ -139,9 +165,10 @@ public class JuegoGato{
         }
         
         else
-         
+        {
          //Imprime El Siguiente Mensaje En Caso De Que No Se Cumpla La Anterior Condicion.                              
-           System.out.println("La Casilla Esta Ocupada, Elija Otra Por Favor");                 
+           System.out.println("La Casilla Esta Ocupada, Elija Otra Por Favor");
+        }
     }
             
   //Metodo Que Hace Uso De Un "switch" Para Indicar La Posicion Del Arreglo Que El Jugador Elijio En El Juego.  
@@ -170,14 +197,14 @@ public class JuegoGato{
         
         
         if(a=='X')
-                                
+        {              
                 System.out.println("FIN DEL JUEGO: FELICIDADES JUGADOR 1!, HA GANADO!.");
-        
+        }
                 
         else if(a=='O')
-                            
+        {      
                     System.out.println("FIN DEL JUEGO: FELICIDADES JUGADOR 2!, HA GANADO!.");                      
-                
+        }
                                 
     }
     
@@ -245,12 +272,13 @@ public class JuegoGato{
                 catch(NumberFormatException e){
                         
                         if(getTurno()==true)
-                           
+                        {
                            System.out.println("ERROR!: Ingreso Un Caracter No Valido, Por Favor, Intente Nuevamente JUGADOR 1.");
-                        
+                        }
                         else
-                                
+                        {    
                            System.out.println("ERROR!: Ingreso Un Caracter No Valido, Por Favor, Intente Nuevamente JUGADOR 2.");       
+                        }
                 }
                          
                 buscarGanador();
